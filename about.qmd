@@ -2,7 +2,8 @@
 title: "About"
 ---
 
-About this site
+
+
 I decided to create a website focused on video game duration because players today face a real challenge:
   games are getting longer, bigger, and more time‑demanding, but most people have less free time than ever
   nowadays. Many popular games take up to 40 or even 100+ hours to complete and players often dont understand
