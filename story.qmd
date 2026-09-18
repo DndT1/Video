@@ -86,3 +86,63 @@ ggplotly(p) |>
 
 1. **Main Stories Are Remarkably Stable**: For over two decades, the core campaign length of popular games has consistently hovered around **11 to 16 hours**.
 2. **Completionist Time Has Surged**: While the main campaign hasn't ballooned, the depth of side content and 100% completionist runs has grown significantly with modern open-world game design.
+
+---
+
+## The Backlog Trap: Bought vs. Finished
+
+Every gamer knows the feeling of buying an acclaimed title on sale, only for it to languish untouched in their backlog. 
+
+The chart below compares the number of players who **completed** a game against those who still have it in their **backlog**:
+
+- **Above the dashed line**: Titles where more players backlogged the game than finished it. Massive RPGs like *The Witcher 3* and *Fallout: New Vegas* top this list.
+- **Below the dashed line**: Games with strong completion follow-through (e.g. *Portal 2* and *Tomb Raider*).
+- **Color**: Shows story length (brighter colors indicate longer campaigns).
+
+*Hover over any bubble to see the game's title, exact player counts, story length, and backlog rate:*
+
+```{r}
+#| message: false
+#| echo: false
+
+popular_backlog <- games |>
+  filter(!is.na(count_backlog), !is.na(count_comp), count_backlog >= 3000, count_comp >= 1000) |>
+  mutate(
+    backlog_pct = round((count_backlog / (count_backlog + count_comp)) * 100, 1),
+    tooltip = paste0(
+      "<b>", game_name, "</b><br>",
+      "Backlogged: ", scales::comma(count_backlog), "<br>",
+      "Completed: ", scales::comma(count_comp), "<br>",
+      "Main Story: ", main_story_hours, " hrs<br>",
+      "Backlog Rate: ", backlog_pct, "%"
+    )
+  )
+
+p_backlog <- popular_backlog |>
+  ggplot(aes(x = count_comp, y = count_backlog, text = tooltip, color = main_story_hours)) +
+  geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "#888888") +
+  geom_point(alpha = 0.7, size = 2.8) +
+  scale_color_viridis_c(option = "plasma", name = "Story (hrs)") +
+  scale_x_continuous(labels = scales::comma) +
+  scale_y_continuous(labels = scales::comma) +
+  labs(
+    title = "Backlog vs. Completed Games",
+    x = "Players Who Completed the Game",
+    y = "Players With Game in Backlog"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.background = element_rect(fill = "#222222", color = NA),
+    panel.background = element_rect(fill = "#222222", color = NA),
+    text = element_text(color = "#ffffff"),
+    axis.text = element_text(color = "#ffffff"),
+    legend.background = element_rect(fill = "#222222", color = NA)
+  )
+
+ggplotly(p_backlog, tooltip = "text") |>
+  layout(
+    paper_bgcolor = "#222222",
+    plot_bgcolor = "#222222",
+    font = list(color = "#ffffff")
+  )
+```
