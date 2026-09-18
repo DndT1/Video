@@ -89,35 +89,35 @@ ggplotly(p) |>
 
 ---
 
-## The Backlog Trap: Bought vs. Finished
+## Finished vs. Unfinished Games
 
-Every gamer knows the feeling of buying an acclaimed title on sale, only for it to sit untouched in their backlog.
+Every gamer knows the feeling of starting an acclaimed game, only to leave it unfinished.
 
-The chart below shows the **percentage of players who finished the game** (blue) versus those who **still have it in their backlog** (red) for the most backlogged titles in gaming history.
+The chart below shows the **percentage of players who finished the game** (blue) versus those who left it **unfinished** (red) for some of the most widely owned titles.
 
-- **Blue (Finished)**: Games players actually see through to the credits (like *Portal 2* at over 60%).
-- **Red (Backlogged)**: Games people bought with great intentions, but left unfinished (like *BioShock 2* and *Fallout: New Vegas* where over 60% remain uncompleted).
+- **Blue (Finished)**: Players who saw the game through to the end credits.
+- **Red (Unfinished)**: Players who left the game uncompleted.
 - **Dashed line**: The 50/50 mark.
 
-*Hover over any bar to see exact percentages and player counts:*
+*Hover over any bar to see exact percentages:*
 
 ```{r}
 #| message: false
 #| echo: false
 
-# Select games with large community counts (20k+) and compute finish vs backlog shares
+# Select games with large community counts (20k+) and compute finished vs unfinished shares
 top_backlogged <- games |>
   filter(!is.na(count_backlog), !is.na(count_comp), (count_backlog + count_comp) >= 20000) |>
   mutate(
     total = count_backlog + count_comp,
     `Finished (%)` = round((count_comp / total) * 100, 1),
-    `Unfinished / Backlog (%)` = round((count_backlog / total) * 100, 1)
+    `Unfinished (%)` = round((count_backlog / total) * 100, 1)
   ) |>
   arrange(desc(count_backlog)) |>
   slice_head(n = 12) |>
-  select(game_name, `Finished (%)`, `Unfinished / Backlog (%)`) |>
+  select(game_name, `Finished (%)`, `Unfinished (%)`) |>
   pivot_longer(
-    cols = c(`Finished (%)`, `Unfinished / Backlog (%)`),
+    cols = c(`Finished (%)`, `Unfinished (%)`),
     names_to = "Status",
     values_to = "Percent"
   )
@@ -129,11 +129,11 @@ p_backlog <- top_backlogged |>
   scale_y_continuous(labels = scales::percent) +
   scale_fill_manual(values = c(
     "Finished (%)" = "#3498db",
-    "Unfinished / Backlog (%)" = "#e74c3c"
+    "Unfinished (%)" = "#e74c3c"
   )) +
   geom_hline(yintercept = 0.5, linetype = "dashed", color = "#ffffff") +
   labs(
-    title = "Top Backlogged Games: Finished vs. Left in Backlog",
+    title = "Popular Games: Finished vs. Unfinished",
     x = NULL,
     y = "Share of Players"
   ) +
