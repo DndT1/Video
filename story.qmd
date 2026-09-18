@@ -1,40 +1,88 @@
 ---
-title: "Story"
+title: "The Story Behind Game Playtimes"
 ---
 
-## Have Video Games Gotten Longer Over Time?
+## About HowLongToBeat
 
-A common debate among gamers is whether modern video games demand more time to finish than older titles. Using data from the top 1,000 games on HowLongToBeat, we can track main story duration across release years.
+**[HowLongToBeat](https://howlongtobeat.com)** is a community-driven database that crowdsources video game completion times from millions of players worldwide. Instead of relying on a single playtime estimate, the platform breaks play styles down into three core categories:
+
+- **Main Story**: Finishing the core objectives to see the end credits without straying into side content.
+- **Main + Extras**: Completing the main storyline while taking time to explore side quests, optional bosses, and character extras.
+- **100% Completionist**: Doing everything possible in the game—unlocking every achievement/trophy, discovering all secrets, and collecting 100% of items.
+
+Our database contains playtime and rating metrics for over **3,100 of the most popular video games**, ranging from retro classics to modern releases.
+
+---
+
+## Have Games Really Gotten Longer?
+
+A frequent debate among gamers is whether modern titles demand far more time than older generations. By tracking median completion times across release years (2000–2024), we can see how game lengths have evolved across all three play styles.
+
+*Hover over any year on the chart below to inspect playtimes simultaneously, or click a style in the legend to toggle it:*
 
 ```{r}
 #| message: false
 #| echo: false
 
 library(tidyverse)
+library(plotly)
 
-# Load game length data
+# Load data and compute annual medians for each playstyle
 games <- read_csv("howlongtobeat.csv", show_col_types = FALSE)
 
-# Filter for games released between 2000 and 2024
-games |>
-  filter(
-    !is.na(release_year),
-    !is.na(main_story_hours),
-    release_year >= 2000,
-    release_year <= 2024,
-    main_story_hours <= 100
+yearly <- games |>
+  filter(!is.na(release_year), !is.na(main_story_hours), !is.na(completionist_hours), release_year >= 2000, release_year <= 2024) |>
+  summarize(
+    `Main Story` = round(median(main_story_hours, na.rm = TRUE), 1),
+    `Main + Extras` = round(median(main_extra_hours, na.rm = TRUE), 1),
+    `100% Completionist` = round(median(completionist_hours, na.rm = TRUE), 1),
+    .by = release_year
   ) |>
-  ggplot(aes(x = release_year, y = main_story_hours)) +
-  geom_jitter(alpha = 0.4, width = 0.2, color = "steelblue") +
-  geom_smooth(method = "loess", se = FALSE, color = "darkred") +
+  arrange(release_year) |>
+  pivot_longer(
+    cols = c(`Main Story`, `Main + Extras`, `100% Completionist`),
+    names_to = "Playstyle",
+    values_to = "Hours"
+  )
+
+# Create line chart
+p <- yearly |>
+  ggplot(aes(x = release_year, y = Hours, color = Playstyle, group = Playstyle)) +
+  geom_line(linewidth = 1.2) +
+  geom_point(size = 2.5) +
+  scale_color_manual(values = c(
+    "Main Story" = "#3498db",
+    "Main + Extras" = "#f39c12",
+    "100% Completionist" = "#e74c3c"
+  )) +
   scale_x_continuous(breaks = seq(2000, 2024, by = 4)) +
   labs(
-    title = "Video Game Story Length Over Time (2000–2024)",
-    subtitle = "Top 1,000 popular games on HowLongToBeat",
+    title = "Median Hours to Beat by Play Style (2000–2024)",
     x = "Release Year",
-    y = "Main Story (Hours)"
+    y = "Median Playtime (Hours)"
   ) +
-  theme_minimal()
+  theme_minimal() +
+  theme(
+    plot.background = element_rect(fill = "#222222", color = NA),
+    panel.background = element_rect(fill = "#222222", color = NA),
+    text = element_text(color = "#ffffff"),
+    axis.text = element_text(color = "#ffffff"),
+    legend.background = element_rect(fill = "#222222", color = NA)
+  )
+
+ggplotly(p) |>
+  layout(
+    paper_bgcolor = "#222222",
+    plot_bgcolor = "#222222",
+    font = list(color = "#ffffff"),
+    legend = list(font = list(color = "#ffffff")),
+    hovermode = "x unified"
+  )
 ```
 
-Most games consistently center around 10 to 20 hours for their main story, with a modest upward trend in average length in recent years.
+---
+
+### Key Takeaways
+
+1. **Main Stories Are Remarkably Stable**: For over two decades, the core campaign length of popular games has consistently hovered around **11 to 16 hours**.
+2. **Completionist Time Has Surged**: While the main campaign hasn't ballooned, the depth of side content and 100% completionist runs has grown significantly with modern open-world game design.
