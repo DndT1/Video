@@ -1,0 +1,29 @@
+---
+title: "Video Game Duration"
+---
+
+An analysis of video game completion times from HowLongToBeat.
+
+```{r}
+#| message: false
+#| echo: false
+
+library(tidyverse)
+
+# Load the downloaded HowLongToBeat data
+games <- read_csv("howlongtobeat.csv", show_col_types = FALSE)
+
+# Plot main story hours versus completionist hours
+games |>
+  filter(!is.na(main_story_hours), !is.na(completionist_hours), completionist_hours < 250, main_story_hours < 100) |>
+  ggplot(aes(x = main_story_hours, y = completionist_hours)) +
+  geom_point(alpha = 0.5, color = "steelblue") +
+  geom_smooth(method = "lm", se = FALSE, color = "darkred") +
+  labs(
+    title = "Main Story vs. Completionist Duration",
+    subtitle = "Top 1,000 popular games on HowLongToBeat",
+    x = "Main Story (Hours)",
+    y = "100% Completionist (Hours)"
+  ) +
+  theme_minimal()
+```

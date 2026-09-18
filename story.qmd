@@ -1,0 +1,40 @@
+---
+title: "Story"
+---
+
+## Have Video Games Gotten Longer Over Time?
+
+A common debate among gamers is whether modern video games demand more time to finish than older titles. Using data from the top 1,000 games on HowLongToBeat, we can track main story duration across release years.
+
+```{r}
+#| message: false
+#| echo: false
+
+library(tidyverse)
+
+# Load game length data
+games <- read_csv("howlongtobeat.csv", show_col_types = FALSE)
+
+# Filter for games released between 2000 and 2024
+games |>
+  filter(
+    !is.na(release_year),
+    !is.na(main_story_hours),
+    release_year >= 2000,
+    release_year <= 2024,
+    main_story_hours <= 100
+  ) |>
+  ggplot(aes(x = release_year, y = main_story_hours)) +
+  geom_jitter(alpha = 0.4, width = 0.2, color = "steelblue") +
+  geom_smooth(method = "loess", se = FALSE, color = "darkred") +
+  scale_x_continuous(breaks = seq(2000, 2024, by = 4)) +
+  labs(
+    title = "Video Game Story Length Over Time (2000–2024)",
+    subtitle = "Top 1,000 popular games on HowLongToBeat",
+    x = "Release Year",
+    y = "Main Story (Hours)"
+  ) +
+  theme_minimal()
+```
+
+Most games consistently center around 10 to 20 hours for their main story, with a modest upward trend in average length in recent years.

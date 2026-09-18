@@ -1,0 +1,7 @@
+---
+title: "Exploration"
+---
+
+## Exploratory Data Analysis
+
+Explore patterns and distributions in the HowLongToBeat dataset.
