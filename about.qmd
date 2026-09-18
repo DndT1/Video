@@ -3,7 +3,9 @@ title: "About"
 ---
 
 ![](game_covers.jpg){fig-align="center" width="85%" style="border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.4); margin-bottom: 25px;"}
-
+This image is a collage of different video game covers arranged side‑by‑side. Each cover represents a different genre, art style, or even marketing approach. Some covers use bright colors and cartoon‑like characters, while others rely on darker tones, realistic graphics, or dramatic action scenes. The image highlightshow varied video game packaging can be, and how each cover tries to communicate the game’s identity in just a single picture. Even without playing the games, you can tell which ones are meant to be funny, serious, adventurous, or competitive simply by looking at the artwork.
+This image comes from Sportskeeda, a website known for covering gaming, esports, and entertainment news.
+The meaning behind this image is that these video covers are a form of communication between the game developers and the players. they are designed to attract attention, present the games theme, and it gives players a glimpse of what to expect when the game is played. These covers influence a players decision to purchase or play a game.
 I decided to create a website focused on video game duration because players today face a real challenge: games are getting longer, bigger, and more time‑demanding, but most people have less free time than ever nowadays.
 
 Many popular games take up to 40 or even 100+ hours to complete and players often don't understand what they are committing to before purchasing these amazing games. I would like to help players better understand how long it actually takes to complete these games.  
