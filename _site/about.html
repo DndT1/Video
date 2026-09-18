@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>About – Video Game Duration</title>
+<title>About the Project – Video Game Duration</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -109,7 +109,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./about.html" aria-current="page"> 
-<span class="menu-text">About</span></a>
+<span class="menu-text">About the Project</span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -122,15 +122,24 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#motivation-and-purpose" id="toc-motivation-and-purpose" class="nav-link active" data-scroll-target="#motivation-and-purpose">Motivation and Purpose</a></li>
+  <li><a href="#first-impressions-and-expectations" id="toc-first-impressions-and-expectations" class="nav-link" data-scroll-target="#first-impressions-and-expectations">First Impressions and Expectations</a></li>
+  <li><a href="#quality-over-length" id="toc-quality-over-length" class="nav-link" data-scroll-target="#quality-over-length">Quality Over Length</a></li>
+  <li><a href="#data-and-image-credits" id="toc-data-and-image-credits" class="nav-link" data-scroll-target="#data-and-image-credits">Data and Image Credits</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">About</h1>
+<h1 class="title">About the Project</h1>
 </div>
 
 
@@ -152,11 +161,30 @@ ul.task-list li input[type="checkbox"] {
 <p><img src="game_covers.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.4); margin-bottom: 25px;;width:85.0%"></p>
 </figure>
 </div>
-<p>I decided to create a website focused on video game duration because players today face a real challenge: games are getting longer, bigger, and more time‑demanding, but most people have less free time than ever nowadays.</p>
-<p>Many popular games take up to 40 or even 100+ hours to complete and players often don’t understand what they are committing to before purchasing these amazing games. I would like to help players better understand how long it actually takes to complete these games.</p>
-<p>Across review platforms like Metacritic, both long and short games appear in the top‑rated lists. What matters most is quality, not length.</p>
+<section id="motivation-and-purpose" class="level3">
+<h3 class="anchored" data-anchor-id="motivation-and-purpose">Motivation and Purpose</h3>
+<p>In the modern gaming landscape, video games have evolved into increasingly expansive and time-demanding experiences. However, while game worlds continue to grow in scale, players often face limited leisure time. Many high-profile titles demand anywhere from 40 to over 100 hours to complete—a substantial commitment that consumers frequently underestimate before purchasing.</p>
+<p>This project was created to bring clarity and transparency to video game completion times. By analyzing crowdsourced playtime metrics from <a href="https://howlongtobeat.com">HowLongToBeat</a>, this site provides players with clear, empirical expectations about the time investment required for different titles and playstyles.</p>
+</section>
+<section id="first-impressions-and-expectations" class="level3">
+<h3 class="anchored" data-anchor-id="first-impressions-and-expectations">First Impressions and Expectations</h3>
+<p>Video game cover art serves as the initial bridge between developers and players. The collage above illustrates how packaging conveys a game’s identity—from vibrant, stylized art to gritty, cinematic action scenes. These visual cues are carefully designed to capture attention, establish atmosphere, and communicate what players should anticipate.</p>
+<p>Yet, while cover art effectively communicates tone and genre, it rarely reveals the scale of time demanded inside. Players drawn in by compelling artwork often commit to purchases without knowing whether a game is a focused weekend playthrough or a multi-month journey.</p>
+</section>
+<section id="quality-over-length" class="level3">
+<h3 class="anchored" data-anchor-id="quality-over-length">Quality Over Length</h3>
+<p>Data across review platforms like Metacritic demonstrates that critical acclaim is not tied to campaign length. Compact, narrative-focused 5-hour indie titles frequently share top ratings alongside sprawling 80-hour open-world epics. Ultimately, what matters most is execution and quality, not simply hour counts. This project aims to help gamers find titles that best match their personal schedules and play preferences.</p>
+<hr>
+</section>
+<section id="data-and-image-credits" class="level3">
+<h3 class="anchored" data-anchor-id="data-and-image-credits">Data and Image Credits</h3>
+<ul>
+<li><strong>Playtime Data</strong>: Crowdsourced statistics collected from <a href="https://howlongtobeat.com">HowLongToBeat</a>.</li>
+<li><strong>Cover Artwork Collage</strong>: Sourced from <a href="https://www.sportskeeda.com/">Sportskeeda</a>.</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -232,7 +260,7 @@ ul.task-list li input[type="checkbox"] {
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/DndT1\.github\.io\/Video\/");
+        var filterRegex = new RegExp('/' + window.location.host + '/');
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
