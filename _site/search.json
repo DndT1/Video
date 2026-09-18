@@ -18,14 +18,14 @@
     "href": "exploration.html",
     "title": "Exploration",
     "section": "",
-    "text": "Explore patterns and distributions in the HowLongToBeat dataset."
+    "text": "Use the search bar below to search for any video game, compare playtimes across playstyles, or sort by review score."
   },
   {
-    "objectID": "exploration.html#exploratory-data-analysis",
-    "href": "exploration.html#exploratory-data-analysis",
+    "objectID": "exploration.html#game-length-explorer",
+    "href": "exploration.html#game-length-explorer",
     "title": "Exploration",
     "section": "",
-    "text": "Explore patterns and distributions in the HowLongToBeat dataset."
+    "text": "Use the search bar below to search for any video game, compare playtimes across playstyles, or sort by review score."
   },
   {
     "objectID": "story.html",
@@ -33,13 +33,6 @@
     "title": "Story",
     "section": "",
     "text": "A common debate among gamers is whether modern video games demand more time to finish than older titles. Using data from the top 1,000 games on HowLongToBeat, we can track main story duration across release years.\n\n\n\n\n\n\n\n\n\nMost games consistently center around 10 to 20 hours for their main story, with a modest upward trend in average length in recent years."
-  },
-  {
-    "objectID": "story.html#the-story-behind-the-data",
-    "href": "story.html#the-story-behind-the-data",
-    "title": "Story",
-    "section": "",
-    "text": "This section tells the story of how video game completion times vary across different genres and playstyles."
   },
   {
     "objectID": "story.html#have-video-games-gotten-longer-over-time",

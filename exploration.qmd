@@ -2,6 +2,31 @@
 title: "Exploration"
 ---
 
-## Exploratory Data Analysis
+## Game Length Explorer
 
-Explore patterns and distributions in the HowLongToBeat dataset.
+Use the search bar below to search for any video game, compare playtimes across playstyles, or sort by review score.
+
+```{r}
+#| message: false
+#| echo: false
+
+library(tidyverse)
+library(DT)
+
+# Load data and select key columns for display
+games <- read_csv("howlongtobeat.csv", show_col_types = FALSE)
+
+games |>
+  select(
+    Game = game_name,
+    Year = release_year,
+    `Score` = review_score,
+    `Main Story (hrs)` = main_story_hours,
+    `Main + Extras (hrs)` = main_extra_hours,
+    `Completionist (hrs)` = completionist_hours
+  ) |>
+  datatable(
+    options = list(pageLength = 10, autoWidth = TRUE),
+    rownames = FALSE
+  )
+```

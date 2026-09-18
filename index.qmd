@@ -9,21 +9,42 @@ An analysis of video game completion times from HowLongToBeat.
 #| echo: false
 
 library(tidyverse)
+library(plotly)
 
-# Load the downloaded HowLongToBeat data
+# Load data
 games <- read_csv("howlongtobeat.csv", show_col_types = FALSE)
 
-# Plot main story hours versus completionist hours
-games |>
-  filter(!is.na(main_story_hours), !is.na(completionist_hours), completionist_hours < 250, main_story_hours < 100) |>
-  ggplot(aes(x = main_story_hours, y = completionist_hours)) +
-  geom_point(alpha = 0.5, color = "steelblue") +
-  geom_smooth(method = "lm", se = FALSE, color = "darkred") +
+# Select top popular games and reshape for comparison
+top_games <- games |>
+  filter(!is.na(main_story_hours), !is.na(completionist_hours)) |>
+  slice_head(n = 12) |>
+  select(game_name, `Main Story` = main_story_hours, `Completionist` = completionist_hours) |>
+  pivot_longer(cols = c(`Main Story`, `Completionist`), names_to = "Playstyle", values_to = "Hours")
+
+p <- top_games |>
+  ggplot(aes(x = reorder(game_name, Hours), y = Hours, fill = Playstyle)) +
+  geom_col(position = "dodge") +
+  coord_flip() +
+  scale_fill_manual(values = c("Main Story" = "#375a7f", "Completionist" = "#e74c3c")) +
   labs(
-    title = "Main Story vs. Completionist Duration",
-    subtitle = "Top 1,000 popular games on HowLongToBeat",
-    x = "Main Story (Hours)",
-    y = "100% Completionist (Hours)"
+    title = "Main Story vs. 100% Completionist (Top Games)",
+    x = NULL,
+    y = "Hours to Beat"
   ) +
-  theme_minimal()
+  theme_minimal() +
+  theme(
+    plot.background = element_rect(fill = "#222222", color = NA),
+    panel.background = element_rect(fill = "#222222", color = NA),
+    text = element_text(color = "#ffffff"),
+    axis.text = element_text(color = "#ffffff"),
+    legend.background = element_rect(fill = "#222222", color = NA)
+  )
+
+ggplotly(p) |>
+  layout(
+    paper_bgcolor = "#222222",
+    plot_bgcolor = "#222222",
+    font = list(color = "#ffffff"),
+    legend = list(font = list(color = "#ffffff"))
+  )
 ```
