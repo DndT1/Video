@@ -91,44 +91,51 @@ ggplotly(p) |>
 
 ## The Backlog Trap: Bought vs. Finished
 
-Every gamer knows the feeling of buying an acclaimed title on sale, only for it to languish untouched in their backlog. 
+Every gamer knows the feeling of buying an acclaimed title on sale, only for it to sit untouched in their backlog.
 
-The chart below compares the number of players who **completed** a game against those who still have it in their **backlog**:
+The chart below shows the **percentage of players who finished the game** (blue) versus those who **still have it in their backlog** (red) for the most backlogged titles in gaming history.
 
-- **Above the dashed line**: Titles where more players backlogged the game than finished it. Massive RPGs like *The Witcher 3* and *Fallout: New Vegas* top this list.
-- **Below the dashed line**: Games with strong completion follow-through (e.g. *Portal 2* and *Tomb Raider*).
-- **Color**: Shows story length (brighter colors indicate longer campaigns).
+- **Blue (Finished)**: Games players actually see through to the credits (like *Portal 2* at over 60%).
+- **Red (Backlogged)**: Games people bought with great intentions, but left unfinished (like *BioShock 2* and *Fallout: New Vegas* where over 60% remain uncompleted).
+- **Dashed line**: The 50/50 mark.
 
-*Hover over any bubble to see the game's title, exact player counts, story length, and backlog rate:*
+*Hover over any bar to see exact percentages and player counts:*
 
 ```{r}
 #| message: false
 #| echo: false
 
-popular_backlog <- games |>
-  filter(!is.na(count_backlog), !is.na(count_comp), count_backlog >= 3000, count_comp >= 1000) |>
+# Select games with large community counts (20k+) and compute finish vs backlog shares
+top_backlogged <- games |>
+  filter(!is.na(count_backlog), !is.na(count_comp), (count_backlog + count_comp) >= 20000) |>
   mutate(
-    backlog_pct = round((count_backlog / (count_backlog + count_comp)) * 100, 1),
-    tooltip = paste0(
-      "<b>", game_name, "</b><br>",
-      "Backlogged: ", scales::comma(count_backlog), "<br>",
-      "Completed: ", scales::comma(count_comp), "<br>",
-      "Main Story: ", main_story_hours, " hrs<br>",
-      "Backlog Rate: ", backlog_pct, "%"
-    )
+    total = count_backlog + count_comp,
+    `Finished (%)` = round((count_comp / total) * 100, 1),
+    `Unfinished / Backlog (%)` = round((count_backlog / total) * 100, 1)
+  ) |>
+  arrange(desc(count_backlog)) |>
+  slice_head(n = 12) |>
+  select(game_name, `Finished (%)`, `Unfinished / Backlog (%)`) |>
+  pivot_longer(
+    cols = c(`Finished (%)`, `Unfinished / Backlog (%)`),
+    names_to = "Status",
+    values_to = "Percent"
   )
 
-p_backlog <- popular_backlog |>
-  ggplot(aes(x = count_comp, y = count_backlog, text = tooltip, color = main_story_hours)) +
-  geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "#888888") +
-  geom_point(alpha = 0.7, size = 2.8) +
-  scale_color_viridis_c(option = "plasma", name = "Story (hrs)") +
-  scale_x_continuous(labels = scales::comma) +
-  scale_y_continuous(labels = scales::comma) +
+p_backlog <- top_backlogged |>
+  ggplot(aes(x = reorder(game_name, Percent), y = Percent, fill = Status)) +
+  geom_col(position = "fill") +
+  coord_flip() +
+  scale_y_continuous(labels = scales::percent) +
+  scale_fill_manual(values = c(
+    "Finished (%)" = "#3498db",
+    "Unfinished / Backlog (%)" = "#e74c3c"
+  )) +
+  geom_hline(yintercept = 0.5, linetype = "dashed", color = "#ffffff") +
   labs(
-    title = "Backlog vs. Completed Games",
-    x = "Players Who Completed the Game",
-    y = "Players With Game in Backlog"
+    title = "Top Backlogged Games: Finished vs. Left in Backlog",
+    x = NULL,
+    y = "Share of Players"
   ) +
   theme_minimal() +
   theme(
@@ -139,10 +146,11 @@ p_backlog <- popular_backlog |>
     legend.background = element_rect(fill = "#222222", color = NA)
   )
 
-ggplotly(p_backlog, tooltip = "text") |>
+ggplotly(p_backlog) |>
   layout(
     paper_bgcolor = "#222222",
     plot_bgcolor = "#222222",
-    font = list(color = "#ffffff")
+    font = list(color = "#ffffff"),
+    legend = list(font = list(color = "#ffffff"), orientation = "h", y = -0.15)
   )
 ```
