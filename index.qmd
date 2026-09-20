@@ -2,66 +2,35 @@
 title: "Video Game Duration"
 ---
 
-An interactive look at completion times across thousands of video games from HowLongToBeat.
+Browse completion times from HowLongToBeat across thousands of video games. Use the search bar to find any game or sort by playtime.
 
 ```{r}
 #| message: false
 #| echo: false
 
 library(tidyverse)
-library(plotly)
+library(DT)
 
-# Load data and group games by release decade
+# Load data and add decade groupings
 games <- read_csv("howlongtobeat.csv", show_col_types = FALSE) |>
-  filter(
-    !is.na(main_story_hours),
-    !is.na(completionist_hours),
-    !is.na(release_year),
-    release_year >= 1980
+  filter(!is.na(main_story_hours), !is.na(completionist_hours)) |>
+  mutate(Decade = if_else(!is.na(release_year) & release_year >= 1980, paste0(10 * (release_year %/% 10), "s"), "Other"))
+
+# Interactive searchable table of video games
+games |>
+  select(
+    Game = game_name,
+    Year = release_year,
+    Decade,
+    `Main Story (hrs)` = main_story_hours,
+    `Completionist (hrs)` = completionist_hours,
+    `Review Score` = review_score
   ) |>
-  mutate(decade = paste0(10 * (release_year %/% 10), "s"))
-
-# Scatter plot: Main story vs completionist hours
-p <- games |>
-  ggplot(aes(
-    x = main_story_hours,
-    y = completionist_hours,
-    color = decade,
-    text = paste0(
-      "<b>", game_name, "</b> (", release_year, ")<br>",
-      "Main Story: ", main_story_hours, " hrs<br>",
-      "100% Completionist: ", completionist_hours, " hrs"
-    )
-  )) +
-  geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "#888888", alpha = 0.7) +
-  geom_point(alpha = 0.65, size = 1.8) +
-  scale_color_manual(values = c(
-    "1980s" = "#9b59b6",
-    "1990s" = "#3498db",
-    "2000s" = "#2ecc71",
-    "2010s" = "#f39c12",
-    "2020s" = "#e74c3c"
-  )) +
-  labs(
-    title = "Main Story vs. 100% Completionist Hours by Decade",
-    x = "Main Story (Hours)",
-    y = "100% Completionist (Hours)",
-    color = "Decade"
-  ) +
-  theme_minimal() +
-  theme(
-    plot.background = element_rect(fill = "#222222", color = NA),
-    panel.background = element_rect(fill = "#222222", color = NA),
-    text = element_text(color = "#ffffff"),
-    axis.text = element_text(color = "#ffffff"),
-    legend.background = element_rect(fill = "#222222", color = NA)
-  )
-
-ggplotly(p, tooltip = "text") |>
-  layout(
-    paper_bgcolor = "#222222",
-    plot_bgcolor = "#222222",
-    font = list(color = "#ffffff"),
-    legend = list(font = list(color = "#ffffff"))
+  datatable(
+    options = list(
+      pageLength = 15,
+      autoWidth = TRUE
+    ),
+    rownames = FALSE
   )
 ```
