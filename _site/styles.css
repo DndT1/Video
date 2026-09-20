@@ -69,6 +69,7 @@ table.dataTable td {
   background-color: #24292e;
   border: 1px solid #373e47;
   border-radius: 10px;
+  overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
@@ -76,6 +77,25 @@ table.dataTable td {
   transform: translateY(-4px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
   border-color: #375a7f;
+}
+
+.game-cover-container {
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+  background-color: #1a1a1a;
+}
+
+.game-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.3s ease;
+}
+
+.game-card:hover .game-cover-img {
+  transform: scale(1.04);
 }
 
 .playtime-badge {
