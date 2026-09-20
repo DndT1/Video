@@ -4,14 +4,7 @@
     "href": "index.html",
     "title": "Video Game Duration",
     "section": "",
-    "text": "An analysis of video game completion times from HowLongToBeat."
-  },
-  {
-    "objectID": "index.html#where-does-your-time-go-20002026",
-    "href": "index.html#where-does-your-time-go-20002026",
-    "title": "Video Game Duration",
-    "section": "Where Does Your Time Go? (2000–2026)",
-    "text": "Where Does Your Time Go? (2000–2026)\nWhen aiming for 100% completion, how is player time divided between the main campaign, side content, and completionist grinding?"
+    "text": "An interactive look at completion times across thousands of video games from HowLongToBeat."
   },
   {
     "objectID": "about.html",
@@ -61,5 +54,19 @@
     "title": "The Story Behind Game Playtimes",
     "section": "Finished vs. Unfinished Games",
     "text": "Finished vs. Unfinished Games\nEvery gamer knows the feeling of starting an acclaimed game, only to leave it unfinished.\nThe chart below shows the percentage of players who finished the game (blue) versus those who left it unfinished (red) for some of the most widely owned titles.\n\nBlue (Finished): Players who saw the game through to the end credits.\nRed (Unfinished): Players who left the game uncompleted.\nDashed line: The 50/50 mark.\n\nHover over any bar to see exact percentages:"
+  },
+  {
+    "objectID": "story.html#main-story-vs.-100-completionist-top-games",
+    "href": "story.html#main-story-vs.-100-completionist-top-games",
+    "title": "The Story Behind Game Playtimes",
+    "section": "Main Story vs. 100% Completionist (Top Games)",
+    "text": "Main Story vs. 100% Completionist (Top Games)"
+  },
+  {
+    "objectID": "story.html#where-does-your-time-go-20002026",
+    "href": "story.html#where-does-your-time-go-20002026",
+    "title": "The Story Behind Game Playtimes",
+    "section": "Where Does Your Time Go? (2000–2026)",
+    "text": "Where Does Your Time Go? (2000–2026)\nWhen aiming for 100% completion, how is player time divided between the main campaign, side content, and completionist grinding?"
   }
 ]
