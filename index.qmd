@@ -2,35 +2,88 @@
 title: "Video Game Duration"
 ---
 
-Browse completion times from HowLongToBeat across thousands of video games. Use the search bar to find any game or sort by playtime.
+Welcome to **Video Game Duration**—exploring real-world completion times crowdsourced from [HowLongToBeat](https://howlongtobeat.com). Discover how long it takes to beat your favorite games across main stories, extra content, and 100% completionist runs.
+
+```{=html}
+<div class="row mb-4">
+  <div class="col-md-4 mb-3">
+    <div class="metric-box">
+      <h3 class="mb-1 text-info">3,100+</h3>
+      <span class="text-secondary">Games Tracked</span>
+    </div>
+  </div>
+  <div class="col-md-4 mb-3">
+    <div class="metric-box">
+      <h3 class="mb-1 text-warning">15.0 hrs</h3>
+      <span class="text-secondary">Median Main Story</span>
+    </div>
+  </div>
+  <div class="col-md-4 mb-3">
+    <div class="metric-box">
+      <h3 class="mb-1 text-danger">65.0 hrs</h3>
+      <span class="text-secondary">Median 100% Completionist</span>
+    </div>
+  </div>
+</div>
+
+<div class="mb-4">
+  <input type="text" id="gameSearch" class="form-control form-control-lg" placeholder="🔍 Search games by title, platform, or year..." onkeyup="filterGames()" style="background-color: #2b2b2b; color: #ffffff; border: 1px solid #444444;">
+</div>
+
+<script>
+function filterGames() {
+  const query = document.getElementById('gameSearch').value.toLowerCase();
+  const cards = document.querySelectorAll('.game-col');
+  cards.forEach(card => {
+    const text = card.textContent.toLowerCase();
+    card.style.display = text.includes(query) ? '' : 'none';
+  });
+}
+</script>
+```
+
+## Featured Games
+
+Browse popular titles below, filter with the search bar, or explore deep trends in the [Story](story.qmd) tab and the full catalog in [Exploration](exploration.qmd).
 
 ```{r}
 #| message: false
 #| echo: false
+#| results: asis
 
 library(tidyverse)
-library(DT)
 
-# Load data and add decade groupings
+# Load data and select top popular games
 games <- read_csv("howlongtobeat.csv", show_col_types = FALSE) |>
   filter(!is.na(main_story_hours), !is.na(completionist_hours)) |>
-  mutate(Decade = if_else(!is.na(release_year) & release_year >= 1980, paste0(10 * (release_year %/% 10), "s"), "Other"))
+  mutate(pop = count_comp + count_backlog) |>
+  arrange(desc(pop)) |>
+  slice_head(n = 24)
 
-# Interactive searchable table of video games
-games |>
-  select(
-    Game = game_name,
-    Year = release_year,
-    Decade,
-    `Main Story (hrs)` = main_story_hours,
-    `Completionist (hrs)` = completionist_hours,
-    `Review Score` = review_score
-  ) |>
-  datatable(
-    options = list(
-      pageLength = 15,
-      autoWidth = TRUE
-    ),
-    rownames = FALSE
-  )
+# Generate responsive Bootstrap cards
+cards <- games |>
+  rowwise() |>
+  mutate(card = paste0(
+    '<div class="col-12 col-md-6 col-lg-4 mb-4 game-col">',
+    '  <div class="card game-card h-100 p-3">',
+    '    <div class="d-flex justify-content-between align-items-start mb-2">',
+    '      <h5 class="card-title mb-0 text-white" style="font-size: 1.1rem; font-weight: 600;">', game_name, '</h5>',
+    '      <span class="badge-score" title="Review Score">★ ', review_score, '</span>',
+    '    </div>',
+    '    <p class="text-secondary small mb-3">', release_year, ' &bull; ', platforms, '</p>',
+    '    <div class="mt-auto pt-2 border-top border-secondary">',
+    '      <div class="d-flex flex-wrap">',
+    '        <span class="playtime-badge badge-story">Main: ', round(main_story_hours, 1), 'h</span>',
+    if_else(!is.na(main_extra_hours), paste0('<span class="playtime-badge badge-extras">+Extras: ', round(main_extra_hours, 1), 'h</span>'), ''),
+    '        <span class="playtime-badge badge-comp">100%: ', round(completionist_hours, 1), 'h</span>',
+    '      </div>',
+    '    </div>',
+    '  </div>',
+    '</div>'
+  )) |>
+  pull(card)
+
+cat('```{=html}\n<div class="row" id="gameGrid">\n')
+cat(paste(cards, collapse = "\n"))
+cat('\n</div>\n```')
 ```

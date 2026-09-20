@@ -63,3 +63,64 @@ table.dataTable td {
   color: #ffffff !important;
   border: 1px solid #375a7f !important;
 }
+
+/* Featured Game Cards */
+.game-card {
+  background-color: #24292e;
+  border: 1px solid #373e47;
+  border-radius: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.game-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  border-color: #375a7f;
+}
+
+.playtime-badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-right: 4px;
+  margin-bottom: 4px;
+}
+
+.badge-story {
+  background-color: rgba(52, 152, 219, 0.15);
+  color: #5dade2;
+  border: 1px solid rgba(52, 152, 219, 0.4);
+}
+
+.badge-extras {
+  background-color: rgba(243, 156, 18, 0.15);
+  color: #f5b041;
+  border: 1px solid rgba(243, 156, 18, 0.4);
+}
+
+.badge-comp {
+  background-color: rgba(231, 76, 60, 0.15);
+  color: #ec7063;
+  border: 1px solid rgba(231, 76, 60, 0.4);
+}
+
+.badge-score {
+  background-color: rgba(46, 204, 113, 0.15);
+  color: #2ecc71;
+  border: 1px solid rgba(46, 204, 113, 0.4);
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+}
+
+.metric-box {
+  background-color: #222222;
+  border: 1px solid #373e47;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+}
+
