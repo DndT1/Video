@@ -2,7 +2,7 @@
 title: "Video Game Duration"
 ---
 
-An analysis of video game completion times from HowLongToBeat.
+An interactive look at completion times across thousands of video games from HowLongToBeat.
 
 ```{r}
 #| message: false
@@ -11,25 +11,42 @@ An analysis of video game completion times from HowLongToBeat.
 library(tidyverse)
 library(plotly)
 
-# Load data
-games <- read_csv("howlongtobeat.csv", show_col_types = FALSE)
+# Load data and group games by release decade
+games <- read_csv("howlongtobeat.csv", show_col_types = FALSE) |>
+  filter(
+    !is.na(main_story_hours),
+    !is.na(completionist_hours),
+    !is.na(release_year),
+    release_year >= 1980
+  ) |>
+  mutate(decade = paste0(10 * (release_year %/% 10), "s"))
 
-# Select top popular games and reshape for comparison
-top_games <- games |>
-  filter(!is.na(main_story_hours), !is.na(completionist_hours)) |>
-  slice_head(n = 12) |>
-  select(game_name, `Main Story` = main_story_hours, `Completionist` = completionist_hours) |>
-  pivot_longer(cols = c(`Main Story`, `Completionist`), names_to = "Playstyle", values_to = "Hours")
-
-p <- top_games |>
-  ggplot(aes(x = reorder(game_name, Hours), y = Hours, fill = Playstyle)) +
-  geom_col(position = "dodge") +
-  coord_flip() +
-  scale_fill_manual(values = c("Main Story" = "#375a7f", "Completionist" = "#e74c3c")) +
+# Scatter plot: Main story vs completionist hours
+p <- games |>
+  ggplot(aes(
+    x = main_story_hours,
+    y = completionist_hours,
+    color = decade,
+    text = paste0(
+      "<b>", game_name, "</b> (", release_year, ")<br>",
+      "Main Story: ", main_story_hours, " hrs<br>",
+      "100% Completionist: ", completionist_hours, " hrs"
+    )
+  )) +
+  geom_abline(intercept = 0, slope = 1, linetype = "dashed", color = "#888888", alpha = 0.7) +
+  geom_point(alpha = 0.65, size = 1.8) +
+  scale_color_manual(values = c(
+    "1980s" = "#9b59b6",
+    "1990s" = "#3498db",
+    "2000s" = "#2ecc71",
+    "2010s" = "#f39c12",
+    "2020s" = "#e74c3c"
+  )) +
   labs(
-    title = "Main Story vs. 100% Completionist (Top Games)",
-    x = NULL,
-    y = "Hours to Beat"
+    title = "Main Story vs. 100% Completionist Hours by Decade",
+    x = "Main Story (Hours)",
+    y = "100% Completionist (Hours)",
+    color = "Decade"
   ) +
   theme_minimal() +
   theme(
@@ -40,64 +57,11 @@ p <- top_games |>
     legend.background = element_rect(fill = "#222222", color = NA)
   )
 
-ggplotly(p) |>
+ggplotly(p, tooltip = "text") |>
   layout(
     paper_bgcolor = "#222222",
     plot_bgcolor = "#222222",
     font = list(color = "#ffffff"),
     legend = list(font = list(color = "#ffffff"))
-  )
-```
-
-## Where Does Your Time Go? (2000–2026)
-
-When aiming for 100% completion, how is player time divided between the main campaign, side content, and completionist grinding?
-
-```{r}
-#| message: false
-#| echo: false
-
-# Calculate average time breakdown across 2000-2026 titles
-breakdown <- games |>
-  filter(
-    !is.na(release_year),
-    release_year >= 2000,
-    release_year <= 2026,
-    !is.na(main_story_hours),
-    !is.na(main_extra_hours),
-    !is.na(completionist_hours),
-    main_extra_hours >= main_story_hours,
-    completionist_hours >= main_extra_hours
-  ) |>
-  summarize(
-    `Main Story` = round(mean(main_story_hours), 1),
-    `Side Quests & Extras` = round(mean(main_extra_hours - main_story_hours), 1),
-    `100% Collectibles & Secrets` = round(mean(completionist_hours - main_extra_hours), 1)
-  ) |>
-  pivot_longer(everything(), names_to = "Category", values_to = "Hours")
-
-# Animated interactive donut chart
-plot_ly(
-  breakdown,
-  labels = ~Category,
-  values = ~Hours,
-  type = "pie",
-  hole = 0.58,
-  textinfo = "label+percent",
-  textposition = "outside",
-  marker = list(
-    colors = c("#3498db", "#f39c12", "#e74c3c"),
-    line = list(color = "#222222", width = 2)
-  ),
-  hoverinfo = "text",
-  hovertext = ~paste0("<b>", Category, "</b><br>Average: ", Hours, " hrs")
-) |>
-  layout(
-    title = list(text = "Average Playtime Distribution (2000–2026)", font = list(color = "#ffffff")),
-    paper_bgcolor = "#222222",
-    plot_bgcolor = "#222222",
-    font = list(color = "#ffffff"),
-    showlegend = TRUE,
-    legend = list(orientation = "h", x = 0.05, y = -0.15, font = list(color = "#ffffff"))
   )
 ```

@@ -154,3 +154,102 @@ ggplotly(p_backlog) |>
     legend = list(font = list(color = "#ffffff"), orientation = "h", y = -0.15)
   )
 ```
+
+---
+
+## Main Story vs. 100% Completionist (Top Games)
+
+```{r}
+#| message: false
+#| echo: false
+
+# Select top popular games and reshape for comparison
+top_games <- games |>
+  filter(!is.na(main_story_hours), !is.na(completionist_hours)) |>
+  slice_head(n = 12) |>
+  select(game_name, `Main Story` = main_story_hours, `Completionist` = completionist_hours) |>
+  pivot_longer(cols = c(`Main Story`, `Completionist`), names_to = "Playstyle", values_to = "Hours")
+
+p_bars <- top_games |>
+  ggplot(aes(x = reorder(game_name, Hours), y = Hours, fill = Playstyle)) +
+  geom_col(position = "dodge") +
+  coord_flip() +
+  scale_fill_manual(values = c("Main Story" = "#375a7f", "Completionist" = "#e74c3c")) +
+  labs(
+    title = "Main Story vs. 100% Completionist (Top Games)",
+    x = NULL,
+    y = "Hours to Beat"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.background = element_rect(fill = "#222222", color = NA),
+    panel.background = element_rect(fill = "#222222", color = NA),
+    text = element_text(color = "#ffffff"),
+    axis.text = element_text(color = "#ffffff"),
+    legend.background = element_rect(fill = "#222222", color = NA)
+  )
+
+ggplotly(p_bars) |>
+  layout(
+    paper_bgcolor = "#222222",
+    plot_bgcolor = "#222222",
+    font = list(color = "#ffffff"),
+    legend = list(font = list(color = "#ffffff"))
+  )
+```
+
+---
+
+## Where Does Your Time Go? (2000–2026)
+
+When aiming for 100% completion, how is player time divided between the main campaign, side content, and completionist grinding?
+
+```{r}
+#| message: false
+#| echo: false
+
+# Calculate average time breakdown across 2000-2026 titles
+breakdown <- games |>
+  filter(
+    !is.na(release_year),
+    release_year >= 2000,
+    release_year <= 2026,
+    !is.na(main_story_hours),
+    !is.na(main_extra_hours),
+    !is.na(completionist_hours),
+    main_extra_hours >= main_story_hours,
+    completionist_hours >= main_extra_hours
+  ) |>
+  summarize(
+    `Main Story` = round(mean(main_story_hours), 1),
+    `Side Quests & Extras` = round(mean(main_extra_hours - main_story_hours), 1),
+    `100% Collectibles & Secrets` = round(mean(completionist_hours - main_extra_hours), 1)
+  ) |>
+  pivot_longer(everything(), names_to = "Category", values_to = "Hours")
+
+# Animated interactive donut chart
+plot_ly(
+  breakdown,
+  labels = ~Category,
+  values = ~Hours,
+  type = "pie",
+  hole = 0.58,
+  textinfo = "label+percent",
+  textposition = "outside",
+  marker = list(
+    colors = c("#3498db", "#f39c12", "#e74c3c"),
+    line = list(color = "#222222", width = 2)
+  ),
+  hoverinfo = "text",
+  hovertext = ~paste0("<b>", Category, "</b><br>Average: ", Hours, " hrs")
+) |>
+  layout(
+    title = list(text = "Average Playtime Distribution (2000–2026)", font = list(color = "#ffffff")),
+    paper_bgcolor = "#222222",
+    plot_bgcolor = "#222222",
+    font = list(color = "#ffffff"),
+    showlegend = TRUE,
+    legend = list(orientation = "h", x = 0.05, y = -0.15, font = list(color = "#ffffff"))
+  )
+```
+
