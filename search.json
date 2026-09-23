@@ -1,5 +1,12 @@
 [
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Video Game Duration",
+    "section": "",
+    "text": "About This Chart\n\n\nThis interactive scatter plot compares the time required to beat a video game’s core Main Story against reaching 100% Completion (secrets, achievements, and extra side content) using crowdsourced player data from HowLongToBeat.\n\n\nWhile most main campaigns take between 10 and 35 hours to complete, completionist runs spread widely into hundreds of hours. Outliers exceeding 1,000 hours (such as continuous live-service MMOs) are filtered out so typical games are easy to inspect. Hover over any dot to view its title and playtime, or click and drag to zoom into any cluster."
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About the Project",
