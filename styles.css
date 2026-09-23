@@ -173,4 +173,21 @@ table.dataTable td {
   margin-bottom: 0.5rem;
 }
 
+/* Glowing point highlight for scatter plot */
+.glowing-point {
+  filter: drop-shadow(0 0 6px #ffbe76) drop-shadow(0 0 12px #f39c12) drop-shadow(0 0 20px rgba(243, 156, 18, 0.8)) !important;
+  stroke: #ffffff !important;
+  stroke-width: 2px !important;
+  animation: pulse-glow 1.5s infinite alternate ease-in-out;
+}
+
+@keyframes pulse-glow {
+  0% {
+    filter: drop-shadow(0 0 5px #ffbe76) drop-shadow(0 0 10px #f39c12) drop-shadow(0 0 16px rgba(243, 156, 18, 0.7));
+  }
+  100% {
+    filter: drop-shadow(0 0 8px #ffffff) drop-shadow(0 0 16px #ffaa00) drop-shadow(0 0 26px rgba(255, 170, 0, 0.95));
+  }
+}
+
 
