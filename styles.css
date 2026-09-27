@@ -1,5 +1,36 @@
 /* css styles */
 
+body {
+  isolation: isolate;
+  background-color: #11151b;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1px 1px at 30px 40px, rgba(255, 255, 255, 0.75) 98%, transparent),
+    radial-gradient(1px 1px at 100px 120px, rgba(173, 216, 230, 0.65) 98%, transparent),
+    radial-gradient(2px 2px at 180px 70px, rgba(255, 255, 255, 0.55) 98%, transparent);
+  background-size: 220px 220px, 310px 310px, 470px 470px;
+  animation: star-drift 120s linear infinite;
+}
+
+@keyframes star-drift {
+  to {
+    background-position: 440px 220px, -310px 310px, 235px -470px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before {
+    animation: none;
+  }
+}
+
 /* DataTables dark theme styling */
 .dataTables_wrapper {
   color: #ffffff !important;
