@@ -42,6 +42,20 @@
     "text": "Search for any game title or franchise below to highlight matching dots on the chart (including different editions and sequels). Hover over any point to inspect completion times.\n\n  \n    \n    Clear"
   },
   {
+    "objectID": "find_by_time.html",
+    "href": "find_by_time.html",
+    "title": "Find a Game by Time",
+    "section": "",
+    "text": "Looking for your next game based on how much time you have? Use the time budget filters or search by title below to highlight games on the chart.\n\n  \n    \n      ⏱️ Select Time Budget:\n      \n        All\n        &lt; 10 hrs\n        10–25 hrs\n        25–50 hrs\n        50+ hrs\n      \n    \n    \n    \n      🎯 Playstyle Target:\n      \n        Main Story Campaign\n        100% Completionist\n      \n    \n\n    \n      \n        \n        Reset\n      \n    \n  \n  \n  \n    Showing all tracked games across all time ranges.\n  \n\n\n\n\n\n\n\n\n\n\n\n\n\nWhether you have a free weekend or are planning a multi-month journey, this tool lets you find games that fit your available schedule:\n\n\n\nQuick (&lt; 10 hrs): Ideal for focused weekend playthroughs and bite-sized narrative experiences.\n\n\nStandard (10–25 hrs): Typical length for most full-length single-player adventures and campaigns.\n\n\nSubstantial (25–50 hrs): Expansive RPGs, strategy campaigns, and open-world titles.\n\n\nEpic (50+ hrs): Massive open-world epics, simulation titles, and completionist marathons.\n\n\n\nTip: Switch the playstyle target between “Main Story Campaign” and “100% Completionist” to see how playtime expands for completionists, or combine time budgets with franchise title searches."
+  },
+  {
+    "objectID": "find_by_time.html#find-a-game-by-time",
+    "href": "find_by_time.html#find-a-game-by-time",
+    "title": "Find a Game by Time",
+    "section": "",
+    "text": "Looking for your next game based on how much time you have? Use the time budget filters or search by title below to highlight games on the chart.\n\n  \n    \n      ⏱️ Select Time Budget:\n      \n        All\n        &lt; 10 hrs\n        10–25 hrs\n        25–50 hrs\n        50+ hrs\n      \n    \n    \n    \n      🎯 Playstyle Target:\n      \n        Main Story Campaign\n        100% Completionist\n      \n    \n\n    \n      \n        \n        Reset\n      \n    \n  \n  \n  \n    Showing all tracked games across all time ranges.\n  \n\n\n\n\n\n\n\n\n\n\n\n\n\nWhether you have a free weekend or are planning a multi-month journey, this tool lets you find games that fit your available schedule:\n\n\n\nQuick (&lt; 10 hrs): Ideal for focused weekend playthroughs and bite-sized narrative experiences.\n\n\nStandard (10–25 hrs): Typical length for most full-length single-player adventures and campaigns.\n\n\nSubstantial (25–50 hrs): Expansive RPGs, strategy campaigns, and open-world titles.\n\n\nEpic (50+ hrs): Massive open-world epics, simulation titles, and completionist marathons.\n\n\n\nTip: Switch the playstyle target between “Main Story Campaign” and “100% Completionist” to see how playtime expands for completionists, or combine time budgets with franchise title searches."
+  },
+  {
     "objectID": "story.html",
     "href": "story.html",
     "title": "The Story Behind Game Playtimes",
