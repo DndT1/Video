@@ -7,6 +7,41 @@
     "text": "About This Chart\n\n\nThis interactive scatter plot compares the time required to beat a video game’s core Main Story against reaching 100% Completion (secrets, achievements, and extra side content) using crowdsourced player data from HowLongToBeat.\n\n\nWhile most main campaigns take between 10 and 35 hours to complete, completionist runs spread widely into hundreds of hours. Outliers exceeding 1,000 hours (such as continuous live-service MMOs) are filtered out so typical games are easy to inspect. Hover over any dot to view its title and playtime, or click and drag to zoom into any cluster."
   },
   {
+    "objectID": "is_longer_better.html",
+    "href": "is_longer_better.html",
+    "title": "Is Longer Better?",
+    "section": "",
+    "text": "The Playtime Paradox: Does Longer Mean Better?\n\n\nA common assumption in video game culture is that bigger is inherently better: if a game offers 60 or 80 hours of campaign content, it must be higher quality or offer superior value compared to a 10-hour experience. When we plot main story duration directly against player review scores, however, the data challenges this simple narrative.\n\n\n\nShort Masterpieces (★ 90+ in Under 10 Hours): Highlighted in vibrant green, games like Portal 2 (8.6 hrs, ★ 90), Silent Hill 2 (8.2 hrs, ★ 91), and Castlevania: Symphony of the Night (8.5 hrs, ★ 90) demonstrate that tight pacing, inventive mechanics, and memorable atmosphere frequently outshine sheer scale. These compact experiences achieve legendary critical status without requiring weeks of player commitment.\n\n\nThe Fatigue of Empty Scale: Highlighted in red, long-form titles like ARK: Survival of the Fittest (51.5 hrs, ★ 38), Battlefield 2042 (42.4 hrs, ★ 58), and DayZ (50.5 hrs, ★ 61) prove that extensive playtime requirements do not shield a game from poor receptions. Sprawling maps, repetitive grinding, and technical instability can dilute player enjoyment regardless of how many hours are logged.\n\n\nA Weak Correlation (r ≈ 0.29): Looking across the entire catalog, the correlation between campaign hours and review scores is modest (approximately 0.29). While longer games show a slight upward tendency in average score, the vertical spread at every hour bracket is massive. High-scoring titles and mediocre releases populate almost every tier of duration.\n\n\n\n⚠️ Correlation Does Not Equal Causation\n\n\nIt is vital to recognize that this observational data does not prove that making a game longer causes it to be better. Several confounding factors explain the modest relationship:\n\n\n\nStudio Resources and Budgets: Large studios capable of funding 50+ hour open worlds usually have the marketing, art, and engineering budgets to polish their games, which naturally influences reception.\n\n\nSelf-Selection Bias: Players who commit to 60-hour RPGs are often dedicated fans of that specific genre, whereas casual or critical players may drop out early or rate titles differently.\n\n\nArtificial Padding: Artificially stretching a narrative with repetitive fetch quests or level-gating rarely improves a game’s reception. Compelling game design, responsive controls, and engaging storytelling drive acclaim—not the clock alone.\n\n\n\nTip: Click the categories in the legend above to isolate the highlighted titles, or hover over individual points across the chart to explore playtime and ratings."
+  },
+  {
+    "objectID": "find_by_time.html",
+    "href": "find_by_time.html",
+    "title": "Find a Game by Time",
+    "section": "",
+    "text": "Looking for your next game based on how much time you have? Use the time budget filters or search by title below to highlight games on the chart.\n\n  \n    \n      ⏱️ Select Time Budget:\n      \n        All\n        &lt; 10 hrs\n        10–25 hrs\n        25–50 hrs\n        50+ hrs\n      \n    \n    \n    \n      🎯 Playstyle Target:\n      \n        Main Story Campaign\n        100% Completionist\n      \n    \n\n    \n      \n        \n        Reset\n      \n    \n  \n  \n  \n    Showing all tracked games across all time ranges.\n  \n\n\n\n\n\n\n\n\n\n\n\n\n\nWhether you have a free weekend or are planning a multi-month journey, this tool lets you find games that fit your available schedule:\n\n\n\nQuick (&lt; 10 hrs): Ideal for focused weekend playthroughs and bite-sized narrative experiences.\n\n\nStandard (10–25 hrs): Typical length for most full-length single-player adventures and campaigns.\n\n\nSubstantial (25–50 hrs): Expansive RPGs, strategy campaigns, and open-world titles.\n\n\nEpic (50+ hrs): Massive open-world epics, simulation titles, and completionist marathons.\n\n\n\nTip: Switch the playstyle target between “Main Story Campaign” and “100% Completionist” to see how playtime expands for completionists, or combine time budgets with franchise title searches."
+  },
+  {
+    "objectID": "find_by_time.html#find-a-game-by-time",
+    "href": "find_by_time.html#find-a-game-by-time",
+    "title": "Find a Game by Time",
+    "section": "",
+    "text": "Looking for your next game based on how much time you have? Use the time budget filters or search by title below to highlight games on the chart.\n\n  \n    \n      ⏱️ Select Time Budget:\n      \n        All\n        &lt; 10 hrs\n        10–25 hrs\n        25–50 hrs\n        50+ hrs\n      \n    \n    \n    \n      🎯 Playstyle Target:\n      \n        Main Story Campaign\n        100% Completionist\n      \n    \n\n    \n      \n        \n        Reset\n      \n    \n  \n  \n  \n    Showing all tracked games across all time ranges.\n  \n\n\n\n\n\n\n\n\n\n\n\n\n\nWhether you have a free weekend or are planning a multi-month journey, this tool lets you find games that fit your available schedule:\n\n\n\nQuick (&lt; 10 hrs): Ideal for focused weekend playthroughs and bite-sized narrative experiences.\n\n\nStandard (10–25 hrs): Typical length for most full-length single-player adventures and campaigns.\n\n\nSubstantial (25–50 hrs): Expansive RPGs, strategy campaigns, and open-world titles.\n\n\nEpic (50+ hrs): Massive open-world epics, simulation titles, and completionist marathons.\n\n\n\nTip: Switch the playstyle target between “Main Story Campaign” and “100% Completionist” to see how playtime expands for completionists, or combine time budgets with franchise title searches."
+  },
+  {
+    "objectID": "exploration.html",
+    "href": "exploration.html",
+    "title": "Exploration",
+    "section": "",
+    "text": "Search for any game title or franchise below to highlight matching dots on the chart (including different editions and sequels). Hover over any point to inspect completion times.\n\n  \n    \n    Clear"
+  },
+  {
+    "objectID": "exploration.html#interactive-playtime-scatter-plot",
+    "href": "exploration.html#interactive-playtime-scatter-plot",
+    "title": "Exploration",
+    "section": "",
+    "text": "Search for any game title or franchise below to highlight matching dots on the chart (including different editions and sequels). Hover over any point to inspect completion times.\n\n  \n    \n    Clear"
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
@@ -26,34 +61,6 @@
     "title": "About",
     "section": "About the Project",
     "text": "About the Project\n\n\n\n\n\n\nMotivation and Purpose\nIn the modern gaming landscape, video games have evolved into increasingly expansive and time-demanding experiences. However, while game worlds continue to grow in scale, players often face limited leisure time. Many high-profile titles demand anywhere from 40 to over 100 hours to complete—a substantial commitment that consumers frequently underestimate before purchasing.\nThis project was created to bring clarity and transparency to video game completion times. By analyzing crowdsourced playtime metrics from HowLongToBeat, this site provides players with clear, empirical expectations about the time investment required for different titles and playstyles.\n\n\nFirst Impressions and Expectations\nVideo game cover art serves as the initial bridge between developers and players. The collage above illustrates how packaging conveys a game’s identity—from vibrant, stylized art to gritty, cinematic action scenes. These visual cues are carefully designed to capture attention, establish atmosphere, and communicate what players should anticipate.\nYet, while cover art effectively communicates tone and genre, it rarely reveals the scale of time demanded inside. Players drawn in by compelling artwork often commit to purchases without knowing whether a game is a focused weekend playthrough or a multi-month journey.\n\n\nQuality Over Length\nData across review platforms like Metacritic demonstrates that critical acclaim is not tied to campaign length. Compact, narrative-focused 5-hour indie titles frequently share top ratings alongside sprawling 80-hour open-world epics. Ultimately, what matters most is execution and quality, not simply hour counts. This project aims to help gamers find titles that best match their personal schedules and play preferences.\n\n\n\nData and Image Credits\n\nPlaytime Data: Crowdsourced statistics collected from HowLongToBeat.\nCover Artwork Collage: Sourced from Sportskeeda."
-  },
-  {
-    "objectID": "exploration.html",
-    "href": "exploration.html",
-    "title": "Exploration",
-    "section": "",
-    "text": "Search for any game title or franchise below to highlight matching dots on the chart (including different editions and sequels). Hover over any point to inspect completion times.\n\n  \n    \n    Clear"
-  },
-  {
-    "objectID": "exploration.html#interactive-playtime-scatter-plot",
-    "href": "exploration.html#interactive-playtime-scatter-plot",
-    "title": "Exploration",
-    "section": "",
-    "text": "Search for any game title or franchise below to highlight matching dots on the chart (including different editions and sequels). Hover over any point to inspect completion times.\n\n  \n    \n    Clear"
-  },
-  {
-    "objectID": "find_by_time.html",
-    "href": "find_by_time.html",
-    "title": "Find a Game by Time",
-    "section": "",
-    "text": "Looking for your next game based on how much time you have? Use the time budget filters or search by title below to highlight games on the chart.\n\n  \n    \n      ⏱️ Select Time Budget:\n      \n        All\n        &lt; 10 hrs\n        10–25 hrs\n        25–50 hrs\n        50+ hrs\n      \n    \n    \n    \n      🎯 Playstyle Target:\n      \n        Main Story Campaign\n        100% Completionist\n      \n    \n\n    \n      \n        \n        Reset\n      \n    \n  \n  \n  \n    Showing all tracked games across all time ranges.\n  \n\n\n\n\n\n\n\n\n\n\n\n\n\nWhether you have a free weekend or are planning a multi-month journey, this tool lets you find games that fit your available schedule:\n\n\n\nQuick (&lt; 10 hrs): Ideal for focused weekend playthroughs and bite-sized narrative experiences.\n\n\nStandard (10–25 hrs): Typical length for most full-length single-player adventures and campaigns.\n\n\nSubstantial (25–50 hrs): Expansive RPGs, strategy campaigns, and open-world titles.\n\n\nEpic (50+ hrs): Massive open-world epics, simulation titles, and completionist marathons.\n\n\n\nTip: Switch the playstyle target between “Main Story Campaign” and “100% Completionist” to see how playtime expands for completionists, or combine time budgets with franchise title searches."
-  },
-  {
-    "objectID": "find_by_time.html#find-a-game-by-time",
-    "href": "find_by_time.html#find-a-game-by-time",
-    "title": "Find a Game by Time",
-    "section": "",
-    "text": "Looking for your next game based on how much time you have? Use the time budget filters or search by title below to highlight games on the chart.\n\n  \n    \n      ⏱️ Select Time Budget:\n      \n        All\n        &lt; 10 hrs\n        10–25 hrs\n        25–50 hrs\n        50+ hrs\n      \n    \n    \n    \n      🎯 Playstyle Target:\n      \n        Main Story Campaign\n        100% Completionist\n      \n    \n\n    \n      \n        \n        Reset\n      \n    \n  \n  \n  \n    Showing all tracked games across all time ranges.\n  \n\n\n\n\n\n\n\n\n\n\n\n\n\nWhether you have a free weekend or are planning a multi-month journey, this tool lets you find games that fit your available schedule:\n\n\n\nQuick (&lt; 10 hrs): Ideal for focused weekend playthroughs and bite-sized narrative experiences.\n\n\nStandard (10–25 hrs): Typical length for most full-length single-player adventures and campaigns.\n\n\nSubstantial (25–50 hrs): Expansive RPGs, strategy campaigns, and open-world titles.\n\n\nEpic (50+ hrs): Massive open-world epics, simulation titles, and completionist marathons.\n\n\n\nTip: Switch the playstyle target between “Main Story Campaign” and “100% Completionist” to see how playtime expands for completionists, or combine time budgets with franchise title searches."
   },
   {
     "objectID": "story.html",
